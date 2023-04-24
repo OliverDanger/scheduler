@@ -9,20 +9,13 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  if (interview === null) {
-    console.log("🦑");
+  if (interview.interview === null) {
     return null;
   };
-  const interviewerID = interview.interviewer;
-  console.log("🦧", interviewerID);
+  const interviewerID = interview.interview.interviewer;
   const theInterviewer = Object.values(state.interviewers).filter(interviewer => interviewer.id === interviewerID)[0];
-  console.log('🦣', theInterviewer);
-  console.log('🦈', interview);
-  const fullInterview = {
-    student: (interview.student),
+  return {
+    student: (interview.interview.student),
     interviewer: { ...theInterviewer }
   };
-  const outputBuffer = { ...fullInterview };
-  console.log('🐊', outputBuffer);
-  return outputBuffer;
 }
