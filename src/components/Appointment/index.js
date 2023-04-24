@@ -8,14 +8,11 @@ import Empty from "./Empty";
 
 export default function Appointment(props) {
 
-
-  console.log("🤬",props.interview)
-
   return (
     <article className="appointment">
       <Header time={props.time} />
         {(props.interview ? 
-        <Show student={props.interview.student} interviewer={props.interview.interviewer} /> 
+        <Show student={props.interview.interview.student} interviewer={props.interview.interview.interviewer} /> 
         : <Empty />)}
     </article>
   );

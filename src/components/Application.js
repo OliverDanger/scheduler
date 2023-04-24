@@ -4,7 +4,7 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./ DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 
 
@@ -12,7 +12,8 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   let dailyAppointments = [];
@@ -27,12 +28,13 @@ export default function Application(props) {
     Promise.all([
       axios.get('/api/days'),
       axios.get('/api/appointments'),
-      // axios.get('/api/interviewers')
+      axios.get('/api/interviewers')
     ]).then((all) => {
-      console.log('DAYS: ', all[0]);
-      console.log('APPOINTMENTS: ', all[1]);
+      console.log('DAYS: ', all[0].data);
+      console.log('APPOINTMENTS: ', all[1].data);
+      console.log('INTERVIEWERS: ', all[2].data);
       // console.log(all[2]);
-      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data }));
+      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     }).catch(error => {
       console.log('ERROR: ', error);
     });
@@ -40,6 +42,18 @@ export default function Application(props) {
   }, []);
 
   dailyAppointments = getAppointmentsForDay(state, state.day);
+
+  const schedule = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment);
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
+  });
 
   return (
     <main className="layout">
@@ -65,12 +79,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {dailyAppointments.map(appt => {
-          return <Appointment
-            key={appt.id}
-            {...appt}
-          />;
-        })}
+        {schedule}
       </section>
     </main>
   );
