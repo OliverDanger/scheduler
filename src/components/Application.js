@@ -4,56 +4,38 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./ DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import { useApplicationData } from "hooks/useApplicationData"
 
 
 
 export default function Application(props) {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {}
-  });
+  const {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview
+  } = useApplicationData();
 
-  let dailyAppointments = [];
-
-  const setDay = day => setState({ ...state, day });
-  // const setDays = days => setState(prev => ({ ...prev, days }));
-  // const setAppointments = appointments => setState(prev => ({ ...prev, appointments }));
-
-
-
-  useEffect(() => {
-    Promise.all([
-      axios.get('/api/days'),
-      axios.get('/api/appointments'),
-      axios.get('/api/interviewers')
-    ]).then((all) => {
-      console.log('DAYS: ', all[0].data);
-      console.log('APPOINTMENTS: ', all[1].data);
-      console.log('INTERVIEWERS: ', all[2].data);
-      // console.log(all[2]);
-      setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
-    }).catch(error => {
-      console.log('ERROR: ', error);
-    });
-
-  }, []);
-
-  dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   const schedule = dailyAppointments.map((appointment) => {
-    const interview = getInterview(state, appointment);
+    const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
+
+  console.log('🛼', state.days)
 
   return (
     <main className="layout">

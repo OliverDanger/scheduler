@@ -9,13 +9,29 @@ export function getAppointmentsForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  if (interview.interview === null) {
+  if (interview === null) {
     return null;
   };
-  const interviewerID = interview.interview.interviewer;
+  const interviewerID = interview.interviewer;
   const theInterviewer = Object.values(state.interviewers).filter(interviewer => interviewer.id === interviewerID)[0];
   return {
-    student: (interview.interview.student),
+    student: (interview.student),
     interviewer: { ...theInterviewer }
   };
+}
+
+export function getInterviewersForDay(state, day) {
+  const filteredDay = state.days.filter(d => d.name === day);
+  const todaysAppointments = (filteredDay.length > 0 ? filteredDay[0].appointments : []);
+  const todaysInterviewersID = [];
+  for (const appt of todaysAppointments) {
+    (state.appointments[appt].interview && todaysInterviewersID.push(state.appointments[appt].interview.interviewer));
+  }
+  const todaysInterviewers = [];
+  for (const interviewerID of todaysInterviewersID) {
+    todaysInterviewers.push(state.interviewers[interviewerID]);
+  }
+  const interviewerSet = [ ...new Set(todaysInterviewers)]
+  console.log('🧑‍💻', interviewerSet)
+  return interviewerSet;
 }

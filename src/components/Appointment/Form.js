@@ -19,6 +19,7 @@ export default function Form(props) {
   };
 
   const save = () => {
+    console.log('👒', student, interviewer)
     props.onSave(student, interviewer)
   }
 
