@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
 import "components/Application.scss";
 import DayList from "./ DayList";
@@ -35,7 +34,6 @@ export default function Application(props) {
     );
   });
 
-  console.log('🛼', state.days)
 
   return (
     <main className="layout">
