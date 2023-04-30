@@ -9,18 +9,18 @@ export function useApplicationData() {
     interviewers: {}
   });
 
-  function changeSpotsForDay (dayName, toIncrease) {
-    let days = [ ...state.days ];
-    let today = days.filter(d => d.name === dayName)[0];
-    const todayIndex = days.indexOf(today)
-    const spotsUpdate = (toIncrease ? today.spots + 1 : today.spots - 1)
-    days[todayIndex] = {...today, spots: spotsUpdate}
-    return days
+  function changeSpotsForDay(dayName, toIncrease) {
+    let days = [...state.days];
+    let today = days.find(d => d.name === dayName);
+    const todayIndex = days.indexOf(today);
+    const spotsUpdate = (toIncrease ? today.spots + 1 : today.spots - 1);
+    days[todayIndex] = { ...today, spots: spotsUpdate };
+    return days;
   }
 
   const setDay = day => setState({ ...state, day });
 
-  function bookInterview(id, interview) {
+  function bookInterview(id, interview, isEdit) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -30,11 +30,10 @@ export function useApplicationData() {
       [id]: appointment
     };
 
-
-
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(res => {
-        setState({ ...state, appointments, days: (changeSpotsForDay(state.day, false)) });
+        (isEdit ? setState({ ...state, appointments }) : setState({ ...state, appointments, days: (changeSpotsForDay(state.day, false)) }));
+
       });
   }
 

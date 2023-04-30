@@ -5,6 +5,8 @@ export function getAppointmentsForDay(state, day) {
   for (const appt of todaysAppointments) {
     outputBuffer.push({ ...state.appointments[appt] });
   }
+  outputBuffer.push({id: -1, time: (outputBuffer.slice(-1).time), interview: {student: "test student", interviewer: 1}})
+  console.log('🤽‍♂️', outputBuffer)
   return outputBuffer;
 }
 
@@ -13,7 +15,7 @@ export function getInterview(state, interview) {
     return null;
   };
   const interviewerID = interview.interviewer;
-  const theInterviewer = Object.values(state.interviewers).filter(interviewer => interviewer.id === interviewerID)[0];
+  const theInterviewer = Object.values(state.interviewers).find(interviewer => interviewer.id === interviewerID);
   return {
     student: (interview.student),
     interviewer: { ...theInterviewer }

@@ -5,7 +5,6 @@ import DayListItem from "./DayListItem";
 export default function DayList(props) {
   const formattedDays = props.days.map((day) => {
     return <DayListItem
-      data-testid="day"
       key={day.id}
       name={day.name}
       spots={day.spots}
