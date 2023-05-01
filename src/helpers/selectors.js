@@ -5,7 +5,9 @@ export function getAppointmentsForDay(state, day) {
   for (const appt of todaysAppointments) {
     outputBuffer.push({ ...state.appointments[appt] });
   }
-  outputBuffer.push({id: -1, time: (outputBuffer.slice(-1).time), interview: {student: "test student", interviewer: 1}})
+  const lastApptTime = outputBuffer.slice(-1).time
+  console.log('⛸', lastApptTime)
+  outputBuffer.push({id: -1, time: lastApptTime, interview: {student: "Some Student", interviewer: 1}})
   console.log('🤽‍♂️', outputBuffer)
   return outputBuffer;
 }
