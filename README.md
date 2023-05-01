@@ -1,7 +1,6 @@
 # Interview Scheduler
 
 Welcome to Interview Scheduler! 
-A react-based app for your interview scheduling needs. 
 
 ## Screenshot Preview: 
 
