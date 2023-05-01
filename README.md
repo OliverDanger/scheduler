@@ -1,5 +1,16 @@
 # Interview Scheduler
 
+Welcome to Interview Scheduler! 
+A react-based app for your interview scheduling needs. 
+
+## Screenshot Preview: 
+
+!["Switching to Wednesday's appointments"](docs/scheduler_switchDays.png)
+!["Wednesday's appointments display"](docs/scheduler_showWednesday.png)
+!["Scheduling a new appointment"](docs/scheduler_createAppointment.png)
+!["Editing an  existing appointment"](docs/scheduler_editAppointment.png)
+!["Asking to confirm delete"](docs/scheduler_confirmDelete.png)
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -20,4 +31,10 @@ npm test
 
 ```sh
 npm run storybook
+```
+
+## Running Cypress End to End Tests
+
+```sh
+npm run cypress
 ```
