@@ -16,13 +16,13 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
+  //get daily data
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
+  //loop thru dailyAppointments data to set Appointment components
   const schedule = dailyAppointments.map((appointment) => {
-    console.log('🏵', appointment)
     const interview = getInterview(state, appointment.interview);
-    console.log('🚵‍♀️', interview)
     return (
       <Appointment
         key={appointment.id}
@@ -36,7 +36,7 @@ export default function Application(props) {
     );
   });
 
-
+  //display daylist in sidebar
   return (
     <main className="layout">
 
