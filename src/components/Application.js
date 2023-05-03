@@ -3,7 +3,7 @@ import React from "react";
 import "components/Application.scss";
 import DayList from "./ DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay, getClosingTime } from "helpers/selectors";
 import { useApplicationData } from "hooks/useApplicationData"
 
 
@@ -19,6 +19,7 @@ export default function Application(props) {
   //get daily data
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
+  const closingTime = getClosingTime(dailyAppointments )
 
   //loop thru dailyAppointments data to set Appointment components
   const schedule = dailyAppointments.map((appointment) => {
@@ -62,6 +63,11 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {schedule}
+        <Appointment
+          key={-1}
+          id={-1}
+          time={closingTime}
+        />
       </section>
     </main>
   );

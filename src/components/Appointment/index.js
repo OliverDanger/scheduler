@@ -29,7 +29,6 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-  //_______________________________________________________
 
   function save(name, interviewer) {
     const isEdit = (mode === EDIT ? true : false)
@@ -43,13 +42,11 @@ export default function Appointment(props) {
       .catch (() => transition(ERROR_SAVE, true));
   }
 
-  //_______________________________________________________
 
   function confirmSave() {
     transition(CONFIRM);
   }
 
-  //_______________________________________________________
 
   function cancel(id) {
     transition(CANCELING);
@@ -58,7 +55,6 @@ export default function Appointment(props) {
       .catch (() => transition(ERROR_DELETE, true));
   }
 
-  //_______________________________________________________
 
   return (
     <article className="appointment" data-testid="appointment">

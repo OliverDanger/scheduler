@@ -1,3 +1,4 @@
+//this file mocks axios for testing purposes
 const fixtures = {
   days: [
     {
@@ -52,7 +53,7 @@ const fixtures = {
     }
   }
 };
-
+//this exports routes for mock axios
 export default {
   get: jest.fn(url => {
     if (url === "/api/days") {

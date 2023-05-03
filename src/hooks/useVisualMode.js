@@ -7,8 +7,8 @@ export function useVisualMode(initial) {
 
   function transition(newMode, isReplacement = false) {
     let historyBuffer = history;
-    (isReplacement && historyBuffer.pop())
     setHistory([...historyBuffer, newMode]);
+    (isReplacement && historyBuffer.pop())
     setMode(newMode);
   }
 

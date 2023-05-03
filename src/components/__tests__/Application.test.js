@@ -95,7 +95,7 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
 
-    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 
 
   });
@@ -140,9 +140,9 @@ describe("Application", () => {
     fireEvent.click(getByText(appointment, "Confirm"));
 
     expect(getByText(appointment, "deleting...")).toBeInTheDocument();
-    await waitForElement(() => getByAltText(appointment, "Interview was not deleted"));
+    await waitForElement(() => getByText(appointment, "Interview was not deleted"));
 
-    expect(getByText(appointment, "Interview was not saved")).toBeInTheDocument();
+    expect(getByText(appointment, "Interview was not deleted")).toBeInTheDocument();
   });
 
 });

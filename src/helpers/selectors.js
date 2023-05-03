@@ -5,8 +5,6 @@ export function getAppointmentsForDay(state, day) {
   for (const appt of todaysAppointments) {
     outputBuffer.push({ ...state.appointments[appt] });
   }
-  const lastApptTime = outputBuffer.slice(-1).time
-  outputBuffer.push({id: -1, time: lastApptTime, interview: {student: "Some Student", interviewer: 1}})
   return outputBuffer;
 }
 
@@ -23,7 +21,7 @@ export function getInterview(state, interview) {
   };
 }
 
-
+//where day is a day is a name string eg. "Monday"
 export function getInterviewersForDay(state, day) {
   const theDay = state.days.find(d => d.name === day);
   let interviewers = [];
@@ -34,5 +32,21 @@ export function getInterviewersForDay(state, day) {
   const todaysAppointmentsID = (theDay ? theDay.appointments : []);
   const todaysInterviews = todaysAppointmentsID.map(apptID => ({ ...state.appointments[apptID] })).filter(appt => appt.interview);
   interviewers = todaysInterviews.map(interview => state.interviewers[interview.interviewer]);
-  return interviewers.map(i => ({...i}));
+  return interviewers.map(i => ({ ...i }));
+}
+
+//uses the last appointment from dailyAppointments to return the closing time as a string
+export function getClosingTime(todaysAppts) {
+  const lastAppt = [...todaysAppts].slice(-1)[0];
+
+  if (lastAppt) {
+    let lastApptTime = Number(lastAppt.time.slice(0, -2)) + 1;
+    let amOrPm = lastAppt.time.slice(-2);
+    if (amOrPm === "am" && lastApptTime > 11) {
+      lastApptTime -= 12;
+      amOrPm = "pm"
+    }
+    return `${lastApptTime}${amOrPm}`;
+  }
+  return "Closed";
 }
