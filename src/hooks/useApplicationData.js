@@ -18,7 +18,11 @@ export function useApplicationData() {
     return days;
   }
 
+//_______________________________________________________
+
   const setDay = day => setState({ ...state, day });
+
+//_______________________________________________________
 
   function bookInterview(id, interview, isEdit) {
     const appointment = {
@@ -36,6 +40,8 @@ export function useApplicationData() {
 
       });
   }
+
+//_______________________________________________________
 
   function cancelInterview(id) {
 
@@ -56,6 +62,8 @@ export function useApplicationData() {
         setState({ ...state, appointments, days: (changeSpotsForDay(state.day, true)) });
       });
   }
+
+//_______________________________________________________
 
   useEffect(() => {
     Promise.all([
