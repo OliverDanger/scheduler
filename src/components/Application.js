@@ -19,7 +19,7 @@ export default function Application(props) {
   //get daily data
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
-  const closingTime = getClosingTime(dailyAppointments )
+  const closingTime = getClosingTime(dailyAppointments)
 
   //loop thru dailyAppointments data to set Appointment components
   const schedule = dailyAppointments.map((appointment) => {

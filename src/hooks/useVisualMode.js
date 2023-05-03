@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+
+//Used in Appointment/index.js to change display mode for each appointment
 export function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
@@ -7,8 +9,8 @@ export function useVisualMode(initial) {
 
   function transition(newMode, isReplacement = false) {
     let historyBuffer = history;
-    setHistory([...historyBuffer, newMode]);
     (isReplacement && historyBuffer.pop())
+    setHistory([...historyBuffer, newMode]);
     setMode(newMode);
   }
 
