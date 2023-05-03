@@ -8,7 +8,7 @@ import { useApplicationData } from "hooks/useApplicationData"
 
 
 
-export default function Application(props) {
+export default function Application() {
   const {
     state,
     setDay,
@@ -51,7 +51,7 @@ export default function Application(props) {
         <nav className="sidebar__menu">
           <DayList
             days={state.days}
-            value={state.day}
+            day={state.day}
             onChange={setDay}
           />
         </nav>
