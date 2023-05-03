@@ -1,5 +1,7 @@
 import React from "react";
 
+//The Empty component is used as a display mode for appointment
+//Empty recieves props: onAdd(event handler)
 export default function Empty(props) {
   return (
     <main className="appointment__add">

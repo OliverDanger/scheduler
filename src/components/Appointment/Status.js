@@ -1,5 +1,7 @@
 import React from "react";
 
+//The Status component is used while loading data in the Appointment component
+//Status recieves props: message (string, eg. "loading...")
 export default function Status(props) {
   return (
     <main className="appointment__card appointment__card--status">

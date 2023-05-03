@@ -3,6 +3,14 @@ import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
+//The Form component is used as a display mode for appointment
+//Form recieves props: 
+    // student (string, name), 
+    // interviewer (ID), 
+    // interviewers (array of interviewer objects), 
+    // onSave (event handler), 
+    // and onCancel (event handler)
+
 export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");

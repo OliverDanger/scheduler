@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function Error(props) {
+//The Error component is used as a display mode for appointment
+//Error recieves props: message (String, error message), and onClose (event handler)
   return (
     <main className="appointment__card appointment__card--error">
       <section className="appointment__error-message">
