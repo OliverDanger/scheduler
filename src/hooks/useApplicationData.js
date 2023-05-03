@@ -55,7 +55,6 @@ export function useApplicationData() {
 
     return axios.delete(`/api/appointments/${id}`)
       .then(res => {
-        console.log('✌️', res);
         setState({ ...state, appointments, days: (changeSpotsForDay(state.day, true)) });
       });
   }
