@@ -3,6 +3,13 @@ import classNames from "classnames";
 
 import "components/DayListItem.scss";
 
+// DayListItem recieves props:
+    // key (day ID)
+    // name (string, eg. "Monday")
+    // spots (integer)
+    // selected (boolean)
+    // setDay (onChange event handler)
+
 export default function DayListItem(props) {
 
   const liClass = classNames({

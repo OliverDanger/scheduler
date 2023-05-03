@@ -4,6 +4,12 @@ import InterviewerListItem from "./InterviewerListItem";
 
 import propTypes from "prop-types"
 
+//The InterviewerList component is used in to display a selectable list of available interviewers
+//InterviewerList recieves props: 
+    // interviewers (array of interviewer objects)
+    // interviewer (selected interviewer ID)
+    // onchange (event handler for selecting interviewer)
+    
 export default function InterviewerList(props) {
   const InterviewerArray = props.interviewers.map((interviewer) => {
     return <InterviewerListItem

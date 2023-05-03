@@ -3,6 +3,14 @@ import classNames from "classnames";
 
 import "components/InterviewerListItem.scss";
 
+// The InterviewerListItem component is used in InterviewerList to display a selectable interviewer
+// InterviewListItem recieves props: 
+    // key (interviewer ID)
+    // name (string, interviewer name)
+    // avatar (string, interviewer avatar url)
+    // selected (boolean)
+    // onChange (event listener for changing selected status)
+
 export default function InterviewerListItem(props) {
 
   const interviewerClass = classNames({
