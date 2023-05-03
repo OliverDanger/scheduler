@@ -3,9 +3,11 @@ import React from "react";
 //The Show component is used as a display mode for appointment
 //Show recieves props: 
     // student (string, name of student)
-    // interviewer (interviewer object)
+    // interviewer (ID of interviewer)
     // onEdit (event handler)
     // onDelete (event handler)
+    
+export default function Show(props) {
 
   return (
     <main className="appointment__card appointment__card--show">
