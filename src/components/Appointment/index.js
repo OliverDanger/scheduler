@@ -24,6 +24,16 @@ const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
+//The Appointment component is called to display each appointment
+//Appointment recieves props:
+    // key (appointment ID),
+    // id (appointment ID),
+    // time (string, eg. "4pm"),
+    // interview (single interview object)
+    // interviewers (array of interviewer objects)
+    // bookInterview (event handler)
+    // cancelInterview (event handler)
+
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
