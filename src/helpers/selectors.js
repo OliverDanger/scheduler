@@ -8,7 +8,7 @@ export function getAppointmentsForDay(state, day) {
   return outputBuffer;
 }
 
-
+//gets full interview object when given state and summary interview object
 export function getInterview(state, interview) {
   if (interview === null) {
     return null;

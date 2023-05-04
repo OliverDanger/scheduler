@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-Welcome to Interview Scheduler! 
+Welcome to Interview Scheduler
 
 ## Screenshot Preview: 
 ##### Switching to Wednesday's appointments

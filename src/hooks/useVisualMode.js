@@ -6,7 +6,7 @@ export function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-
+  // transitions to new visual mode and adds it to history state
   function transition(newMode, isReplacement = false) {
     let historyBuffer = history;
     (isReplacement && historyBuffer.pop())
@@ -14,7 +14,7 @@ export function useVisualMode(initial) {
     setMode(newMode);
   }
 
-
+  // transitions to previous mode and removes current mode from history
   function back() {
     let backstep = history;
     (history.length > 1 && backstep.pop())

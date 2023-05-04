@@ -13,7 +13,7 @@ import Error from "./Error";
 import { useVisualMode } from "hooks/useVisualMode";
 import Confirm from "./Confirm";
 
-//visual mode constants
+//visual modes
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -39,7 +39,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-
+  // updates visual mode and calls bookInterview
   function save(name, interviewer) {
     const isEdit = (mode === EDIT ? true : false)
     const interview = {
@@ -57,7 +57,7 @@ export default function Appointment(props) {
     transition(CONFIRM);
   }
 
-
+  // updates visual mode and calls cancelInterview
   function cancel(id) {
     transition(CANCELING);
     props.cancelInterview(props.id)

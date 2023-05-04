@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+// useApplicationData gives access to state, and functions for updating the data and state
 export function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
@@ -9,6 +10,7 @@ export function useApplicationData() {
     interviewers: {}
   });
 
+  //this updates the display of spots remaining for a DayListItem in DayList
   function changeSpotsForDay(dayName, toIncrease) {
     let days = [...state.days];
     let today = days.find(d => d.name === dayName);
@@ -21,7 +23,7 @@ export function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-
+  //saves interview data and updates state
   function bookInterview(id, interview, isEdit) {
     const appointment = {
       ...state.appointments[id],
@@ -39,7 +41,7 @@ export function useApplicationData() {
       });
   }
 
-
+  // removes interview data and updates state
   function cancelInterview(id) {
 
     const appointment = {
